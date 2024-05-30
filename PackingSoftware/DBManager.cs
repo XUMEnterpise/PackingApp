@@ -85,6 +85,98 @@ namespace PackingSoftware
             }
 
         }
+        public string ReturnPackedThisHour()
+        {
+            string itemCount ="";
+
+            // Get the current date and hour
+            DateTime now = DateTime.Now;
+            DateTime startOfHour = new DateTime(now.Year, now.Month, now.Day, now.Hour, 0, 0);
+            DateTime endOfHour = startOfHour.AddHours(1);
+
+            // SQL query to count items within the current hour
+            string query = $"SELECT COUNT(*) FROM History WHERE PackedDate >= @StartOfHour AND PackedDate < @EndOfHour";
+
+            try
+            {
+                using (_connection = new SqlConnection(sql))
+                using (var command = _connection.CreateCommand())
+                {
+                    _connection.Open();
+                    command.CommandText = query;
+                    command.Parameters.AddWithValue("@StartOfHour", startOfHour);
+                    command.Parameters.AddWithValue("@EndOfHour", endOfHour);
+                    itemCount=command.ExecuteScalar().ToString();
+                    _connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message); 
+            }
+
+            return itemCount;
+        }
+        public string ReturnPackedToday()
+        {
+            string itemCount = "";
+
+            // Get the current date (ignoring the time part)
+            DateTime today = DateTime.Today;
+
+            // SQL query to count items packed today
+            string query = $"SELECT COUNT(*) FROM History WHERE CAST(PackedDate AS DATE) = @Today";
+
+            try
+            {
+                using (SqlConnection _connection = new SqlConnection(sql))
+                using (var command = _connection.CreateCommand())
+                {
+                    _connection.Open();
+                    command.CommandText = query;
+                    command.Parameters.AddWithValue("@Today", today);
+                    itemCount = command.ExecuteScalar().ToString();
+                    _connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return itemCount;
+        }
+        public DataTable ReturnPackedTodayManifest()
+        {
+            DataTable dt = new DataTable();
+
+            // Get the current date (ignoring the time part)
+            DateTime today = DateTime.Today;
+
+            // SQL query to count items packed today
+            string query = "SELECT * FROM ManifestTable WHERE CAST(PackedDate AS DATE) = @Today";
+
+            try
+            {
+                using (SqlConnection _connection = new SqlConnection(sql))
+                using (SqlCommand command = new SqlCommand(query, _connection))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                {
+                    // Add the parameter to the command
+                    command.Parameters.AddWithValue("@Today", today);
+
+                    _connection.Open();
+                    adapter.Fill(dt);
+                    _connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return dt;
+        }
         /// <summary>
         /// Select the table that fits the condition
         /// </summary>

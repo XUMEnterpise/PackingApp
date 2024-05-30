@@ -23,3 +23,4 @@ C:\Users\artel\source\repos\PackingSoftware\PackingSoftware\bin\Debug\net8.0-win
 C:\Users\artel\source\repos\PackingSoftware\PackingSoftware\bin\Debug\net8.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
 C:\Users\artel\source\repos\PackingSoftware\PackingSoftware\obj\Debug\net8.0-windows\PackingSoftware.csproj.AssemblyReference.cache
 C:\Users\artel\source\repos\PackingSoftware\PackingSoftware\obj\Debug\net8.0-windows\PackingS.BE4EB366.Up2Date
+C:\Users\artel\source\repos\PackingSoftware\PackingSoftware\obj\Debug\net8.0-windows\PackingSoftware.sourcelink.json
