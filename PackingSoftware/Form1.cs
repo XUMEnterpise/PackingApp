@@ -194,9 +194,10 @@ namespace PackingSoftware
                     string formattedTime = currentTime.ToString("yyyy-MM-dd HH:mm:ss");
                     string staffName = dbManager.SelectSpecific("StaffTable", "StaffNumber", staffTextBox.Text).Rows[^1].ItemArray[1].ToString();
                     dbManager.InsertQuerry($"UPDATE History SET PackedBy='{staffName}', PackedDate='{formattedTime}' where OrderId='{orderNumberTextBox.Text}'");
+                    dbManager.InsertQuerry($"UPDATE History SET PackedBy='{staffName}', PackedDate='{formattedTime}' where OrderId='{secondTextBox.Text}'");
                     if (checkIfExists(prebuildNumber, "ManifestTable", "Prebuild"))
                     {
-                        dbManager.InsertQuerry($"UPDATE ManifestTable SET OrderNumber='{orderNumber}', OrderSKU='{orderSku}' where Prebuild='{prebuildNumber}'");
+                        dbManager.InsertQuerry($"UPDATE ManifestTable SET OrderNumber='{orderNumber}', OrderSKU='{orderSku}',PackedDate='{formattedTime}' where Prebuild='{prebuildNumber}'");
                     }
                     else
                     {

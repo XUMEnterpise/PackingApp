@@ -12,7 +12,7 @@ namespace PackingSoftware
     public class DBManager
     {
         SqlConnection _connection;
-        readonly string sql = ConfigurationManager.ConnectionStrings["local"].ConnectionString;
+        readonly string sql = ConfigurationManager.ConnectionStrings["BuildQtyTracker.Properties.Settings.xumlocalConnectionString"].ConnectionString;
 
 
         /// <summary>
@@ -95,7 +95,7 @@ namespace PackingSoftware
             DateTime endOfHour = startOfHour.AddHours(1);
 
             // SQL query to count items within the current hour
-            string query = $"SELECT COUNT(*) FROM History WHERE PackedDate >= @StartOfHour AND PackedDate < @EndOfHour";
+            string query = $"SELECT COUNT(*) FROM ManifestTable WHERE PackedDate >= @StartOfHour AND PackedDate < @EndOfHour  AND PrebuildSKU not like 'C%'";
 
             try
             {
@@ -125,7 +125,7 @@ namespace PackingSoftware
             DateTime today = DateTime.Today;
 
             // SQL query to count items packed today
-            string query = $"SELECT COUNT(*) FROM History WHERE CAST(PackedDate AS DATE) = @Today";
+            string query = $"SELECT COUNT(*) FROM ManifestTable WHERE CAST(PackedDate AS DATE) = @Today  AND PrebuildSKU not like 'C%'";
 
             try
             {
@@ -154,7 +154,7 @@ namespace PackingSoftware
             DateTime today = DateTime.Today;
 
             // SQL query to count items packed today
-            string query = "SELECT * FROM ManifestTable WHERE CAST(PackedDate AS DATE) = @Today";
+            string query = "SELECT * FROM ManifestTable WHERE CAST(PackedDate AS DATE) = @Today AND PrebuildSKU not like 'C%'";
 
             try
             {
