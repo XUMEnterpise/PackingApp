@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PackingSoftware")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f0467564e82953df3548c7691d0b52b8c831100d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bf840ef6d616ea03845ea8cdc51bc8655b098ed7")]
 [assembly: System.Reflection.AssemblyProductAttribute("PackingSoftware")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PackingSoftware")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

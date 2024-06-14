@@ -95,7 +95,7 @@ namespace PackingSoftware
             DateTime endOfHour = startOfHour.AddHours(1);
 
             // SQL query to count items within the current hour
-            string query = $"SELECT COUNT(*) FROM ManifestTable WHERE PackedDate >= @StartOfHour AND PackedDate < @EndOfHour  AND PrebuildSKU not like 'C%'";
+            string query = $"SELECT COUNT(*) FROM ManifestTable WHERE PackedDate >= @StartOfHour AND PackedDate < @EndOfHour  AND OrderSKU NOT like 'C%'";
 
             try
             {
@@ -125,7 +125,7 @@ namespace PackingSoftware
             DateTime today = DateTime.Today;
 
             // SQL query to count items packed today
-            string query = $"SELECT COUNT(*) FROM ManifestTable WHERE CAST(PackedDate AS DATE) = @Today  AND PrebuildSKU not like 'C%'";
+            string query = $"SELECT COUNT(*) FROM ManifestTable WHERE CAST(PackedDate AS DATE) = @Today  AND NOT OrderSKU like 'C%'";
 
             try
             {
@@ -154,7 +154,7 @@ namespace PackingSoftware
             DateTime today = DateTime.Today;
 
             // SQL query to count items packed today
-            string query = "SELECT * FROM ManifestTable WHERE CAST(PackedDate AS DATE) = @Today AND PrebuildSKU not like 'C%'";
+            string query = "SELECT * FROM ManifestTable WHERE CAST(PackedDate AS DATE) = @Today AND NOT OrderSKU like 'C%'";
 
             try
             {
