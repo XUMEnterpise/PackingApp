@@ -1,0 +1,9 @@
+F:\packingSoftware\PackingSoftware.pdb
+F:\packingSoftware\PackingSoftware.dll.config
+F:\packingSoftware\D3DCompiler_47_cor3.dll
+F:\packingSoftware\PenImc_cor3.dll
+F:\packingSoftware\PresentationNative_cor3.dll
+F:\packingSoftware\vcruntime140_cor3.dll
+F:\packingSoftware\wpfgfx_cor3.dll
+F:\packingSoftware\sni.dll
+F:\packingSoftware\PackingSoftware.exe

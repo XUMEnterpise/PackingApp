@@ -9,22 +9,18 @@ namespace PackingSoftware
 {
     public class PackedEntry
     {
-        public PackedEntry(string prebuildNumber, string prebuildSku, string orderNumber, string orderSku)
+        public PackedEntry(Item Prebuild, Item Order)
         {
-            this.prebuildNumber = prebuildNumber;
-            this.prebuildSku = prebuildSku;
-            this.orderNumber = orderNumber;
-            this.orderSku = orderSku;
+            this.Prebuild = Prebuild;
+            this.Order = Order;
         }
 
-        public string prebuildNumber { get; }
-        public string prebuildSku { get; }
-        public string orderNumber { get; }
-        public string orderSku { get; }
+        public Item Prebuild { get; }
+        public Item Order { get; }
 
         public List<string> toArray()
         {
-            return [prebuildNumber, prebuildSku, orderNumber, orderSku];
+            return [Prebuild.OrderId, Prebuild.Sku, Order.OrderId, Order.Sku];
         }
         public ListViewItem[] returnItem()
         {
@@ -32,15 +28,15 @@ namespace PackingSoftware
             ListViewItem item2 = new ListViewItem();
             ListViewItem item3 = new ListViewItem();
             ListViewItem item4 = new ListViewItem();
-            item1.SubItems.Add(prebuildNumber);
-            item2.SubItems.Add(prebuildSku);
-            item3.SubItems.Add(orderNumber);
-            item4.SubItems.Add(orderSku);
+            item1.SubItems.Add(Prebuild.OrderId);
+            item2.SubItems.Add(Prebuild.Sku);
+            item3.SubItems.Add(Order.OrderId);
+            item4.SubItems.Add(Order.Sku);
             return [item1, item2, item3, item4];
         }
         public override string ToString()
         {
-            return $"{prebuildNumber} | {prebuildSku} | {orderNumber} | {orderSku}";
+            return $"{Prebuild.OrderId} | {Prebuild.Sku} | {Order.OrderId} | {Order.Sku}";
         }
     }
 }

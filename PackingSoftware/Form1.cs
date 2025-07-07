@@ -6,10 +6,8 @@ namespace PackingSoftware
     public partial class Form1 : Form
     {
         DBManager dbManager = new DBManager();
-        private string prebuildNumber;
-        private string prebuildSku;
-        private string orderNumber;
-        private string orderSku;
+        private Item Prebuild;
+        private Item Order;
         private int lastHour;
         public Form1()
         {
@@ -70,33 +68,26 @@ namespace PackingSoftware
             
             if (e.KeyCode == Keys.Enter)
             {
-                orderNumber = orderNumberTextBox.Text.ToUpper();
+                string orderNumber = orderNumberTextBox.Text.ToUpper();
                 if (CheckOrderNumber(orderNumber))
                 {
-                    DataRow item;
-                    try
+                    Item temp=dbManager.ReturnItem(orderNumber);
+                    if (temp != null)
                     {
-                        item = dbManager.SelectSpecific("History", "OrderID", orderNumber).Rows[^1];
-                    }
-                    catch (Exception)
-                    {
-                        orderNumber = orderNumber.Replace("P", "");
-                        item = dbManager.SelectSpecific("History", "OrderID", orderNumber).Rows[^1];
-                    }
-                    
-                    if (item.ItemArray[4].ToString().Contains("Prebuilt") || item.ItemArray[4].ToString().Contains("Laptop"))
-                    {
-                        prebuildNumber = orderNumber;
-                        prebuildSku = item[2].ToString();
-                        label2.Visible = true;
-                        secondTextBox.Visible = true;
-                        secondTextBox.Focus();
-                    }
-                    else
-                    {
-                        prebuildNumber = orderNumber;
-                        orderSku = item[2].ToString();
-                        staffTextBox.Focus();
+                        if (temp.type == ItemType.PC_Prebuild || temp.type==ItemType.Laptop_Prebuild)
+                        {
+                            Prebuild = temp;
+                            label2.Visible = true;
+                            secondTextBox.Visible = true;
+                            secondTextBox.Focus();
+                        }
+                        else
+                        {
+                            Order = temp;
+                            staffTextBox.Visible = true;
+                            staffTextBox.Focus();
+                            label3.Visible = true;
+                        }
                     }
                 }
                 else
@@ -120,37 +111,37 @@ namespace PackingSoftware
             label.ForeColor = originalColor;
         }
 
-        private void OnEnterSecondTextBox(object sender, KeyEventArgs e)
+        private async void OnEnterSecondTextBox(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
-                DataRow item = dbManager.SelectSpecific("History", "OrderID", prebuildNumber).Rows[^1];
-                orderNumber=secondTextBox.Text.ToUpper();
+                
+                string orderNumber=secondTextBox.Text.ToUpper();
                 if (CheckOrderNumber(orderNumber))
                 {
-                    DataRow item2;
-                    try
-                    {
-                        item2 = dbManager.SelectSpecific("History", "OrderID", orderNumber).Rows[^1];
-                    }
-                    catch (Exception)
-                    {
-                        orderNumber = orderNumber.Replace("P", "");
-                        item2 = dbManager.SelectSpecific("History", "OrderID", orderNumber).Rows[^1];
-                    }
-                    prebuildSku = item[2].ToString();
-                    orderSku = item2[2].ToString();
+                    Order = dbManager.ReturnItem(orderNumber);
 
-                    if (orderNumberTextBox.Text == secondTextBox.Text)
+
+                    if (Order.OrderId==Prebuild.OrderId)
                     {
                         staffTextBox.Focus();
                     }
                     else
                     {
-                        dbManager.InsertQuerry($"UPDATE History SET AssignedNumber='{orderNumberTextBox.Text}' where OrderId='{secondTextBox.Text}'");
-                        dbManager.InsertQuerry($"UPDATE History SET AssignedNumber='{secondTextBox.Text}' where OrderId='{orderNumberTextBox.Text}'");
-                        orderNumber = secondTextBox.Text;
-                        staffTextBox.Focus();
+                        if (Order != null)
+                        {
+                            //dbManager.InsertQuerry($"UPDATE History SET AssignedNumber='{Order.OrderId}' where OrderId='{Prebuild.OrderId}'");
+                            dbManager.InsertQuerry($"UPDATE History SET AssignedNumber='{Prebuild.OrderId}' where OrderId='{Order.OrderId}'");
+                            bool correct=await Order.Compare(Prebuild);
+                            if (correct) {
+                                orderNumber = secondTextBox.Text;
+                                staffTextBox.Focus();
+                            }
+                            else
+                            {
+                                ShowErrorAsync(label2);
+                            }
+                        }
                     }
                 }
                 else
@@ -160,6 +151,7 @@ namespace PackingSoftware
                 
             }
         }
+
         public bool CheckOrderNumber(string orderNumber)
         {
             bool exists;
@@ -193,16 +185,15 @@ namespace PackingSoftware
                     DateTime currentTime = System.DateTime.Now;
                     string formattedTime = currentTime.ToString("yyyy-MM-dd HH:mm:ss");
                     string staffName = dbManager.SelectSpecific("StaffTable", "StaffNumber", staffTextBox.Text).Rows[^1].ItemArray[1].ToString();
-                    dbManager.InsertQuerry($"UPDATE History SET PackedBy='{staffName}', PackedDate='{formattedTime}' where OrderId='{orderNumberTextBox.Text}'");
-                    dbManager.InsertQuerry($"UPDATE History SET PackedBy='{staffName}', PackedDate='{formattedTime}' where OrderId='{secondTextBox.Text}'");
-                    if (checkIfExists(prebuildNumber, "ManifestTable", "Prebuild"))
+                    dbManager.InsertQuerry($"UPDATE History SET PackedBy='{staffName}', PackedDate='{formattedTime}' where OrderId='{Order.OrderId}'");
+                    if (checkIfExists(Prebuild.OrderId, "ManifestTable", "Prebuild"))
                     {
-                        dbManager.InsertQuerry($"UPDATE ManifestTable SET OrderNumber='{orderNumber}', OrderSKU='{orderSku}',PackedDate='{formattedTime}' where Prebuild='{prebuildNumber}'");
+                        dbManager.InsertQuerry($"UPDATE ManifestTable SET OrderNumber='{Order.OrderId}', OrderSKU='{Order.Sku}',PackedDate='{formattedTime}' where Prebuild='{Prebuild.OrderId}'");
                     }
                     else
                     {
                         dbManager.InsertQuerry($"INSERT INTO ManifestTable (Prebuild,PrebuildSKU,OrderNumber,OrderSKU) " +
-                            $"VALUES ('{prebuildNumber}','{prebuildSku}','{orderNumber}','{orderSku}')");
+                            $"VALUES ('{Prebuild.OrderId}','{Prebuild.Sku}','{Order.OrderId}','{Order.Sku}')");
                     }
 
                     dataGridView1.DataSource = dbManager.ReturnPackedTodayManifest();

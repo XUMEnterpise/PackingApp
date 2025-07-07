@@ -87,7 +87,7 @@ namespace PackingSoftware
         }
         public string ReturnPackedThisHour()
         {
-            string itemCount ="";
+            string itemCount = "";
 
             // Get the current date and hour
             DateTime now = DateTime.Now;
@@ -95,7 +95,7 @@ namespace PackingSoftware
             DateTime endOfHour = startOfHour.AddHours(1);
 
             // SQL query to count items within the current hour
-            string query = $"SELECT COUNT(*) FROM ManifestTable WHERE PackedDate >= @StartOfHour AND PackedDate < @EndOfHour  AND OrderSKU NOT like 'C%'";
+            string query = $"SELECT COUNT(*) FROM ManifestTable WHERE PackedDate >= @StartOfHour AND PackedDate < @EndOfHour  AND OrderSKU NOT like 'L%'";
 
             try
             {
@@ -106,13 +106,13 @@ namespace PackingSoftware
                     command.CommandText = query;
                     command.Parameters.AddWithValue("@StartOfHour", startOfHour);
                     command.Parameters.AddWithValue("@EndOfHour", endOfHour);
-                    itemCount=command.ExecuteScalar().ToString();
+                    itemCount = command.ExecuteScalar().ToString();
                     _connection.Close();
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message); 
+                Console.WriteLine(ex.Message);
             }
 
             return itemCount;
@@ -125,7 +125,7 @@ namespace PackingSoftware
             DateTime today = DateTime.Today;
 
             // SQL query to count items packed today
-            string query = $"SELECT COUNT(*) FROM ManifestTable WHERE CAST(PackedDate AS DATE) = @Today  AND NOT OrderSKU like 'C%'";
+            string query = $"SELECT COUNT(*) FROM ManifestTable WHERE CAST(PackedDate AS DATE) = @Today  AND NOT OrderSKU like 'L%'";
 
             try
             {
@@ -154,7 +154,7 @@ namespace PackingSoftware
             DateTime today = DateTime.Today;
 
             // SQL query to count items packed today
-            string query = "SELECT * FROM ManifestTable WHERE CAST(PackedDate AS DATE) = @Today AND NOT OrderSKU like 'C%'";
+            string query = "SELECT * FROM ManifestTable WHERE CAST(PackedDate AS DATE) = @Today AND NOT OrderSKU like 'L%'";
 
             try
             {
@@ -248,6 +248,42 @@ namespace PackingSoftware
             {
                 System.Windows.Forms.MessageBox.Show(string.Format("An error occurred: {0}", ex.Message));
             }
+        }
+
+        internal Item ReturnItem(string orderNumber)
+        {
+            DataRow item;
+            try
+            {
+                item = SelectSpecific("History", "OrderID", orderNumber).Rows[^1];
+            }
+            catch (Exception)
+            {
+                orderNumber = orderNumber.Replace("P", "");
+                item = SelectSpecific("History", "OrderID", orderNumber).Rows[^1];
+            }
+            DataRow sku = SelectSpecific("SKUS", "SKU", item[2].ToString()??"").Rows[^1];
+            Item returnItem;
+            if (sku != null)
+            {
+                if (item.ItemArray[4].ToString().Contains("Prebuilt"))
+                {
+                     return new Item(orderNumber, sku[0].ToString(), sku[3].ToString(), sku[5].ToString(), sku[4].ToString(), sku[7].ToString(), sku[9].ToString(), sku[6].ToString(), ItemType.PC_Prebuild);
+                }else if(item.ItemArray[4].ToString().Contains("Laptop"))
+                {
+                     return new Item(orderNumber, sku[0].ToString(), sku[3].ToString(), sku[5].ToString(), sku[4].ToString(), sku[7].ToString(), sku[9].ToString(), sku[6].ToString(), ItemType.Laptop_Prebuild);
+                }else if ((!item.ItemArray[4].ToString().Contains("Laptop") || !item.ItemArray[4].ToString().Contains("Prebuilt")) && sku[1].ToString().Contains("LAPTOP"))
+                {
+                     return new Item(orderNumber, sku[0].ToString(), sku[3].ToString(), sku[5].ToString(), sku[4].ToString(), sku[7].ToString(), sku[9].ToString(), sku[6].ToString(), ItemType.Laptop_Order);
+                }
+                else if ((!item.ItemArray[4].ToString().Contains("Laptop") || !item.ItemArray[4].ToString().Contains("Prebuilt")) && sku[1].ToString().Contains("DESKTOP"))
+                {
+                     return  new Item(orderNumber, sku[0].ToString(), sku[3].ToString(), sku[5].ToString(), sku[4].ToString(), sku[7].ToString(), sku[9].ToString(), sku[6].ToString(), ItemType.PC_Order);
+                }
+            }
+            return null;
+            
+            
         }
     }
 }
