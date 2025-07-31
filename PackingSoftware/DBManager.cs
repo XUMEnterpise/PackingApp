@@ -95,7 +95,7 @@ namespace PackingSoftware
             DateTime endOfHour = startOfHour.AddHours(1);
 
             // SQL query to count items within the current hour
-            string query = $"SELECT COUNT(*) FROM ManifestTable WHERE PackedDate >= @StartOfHour AND PackedDate < @EndOfHour  AND OrderSKU NOT like 'L%'";
+            string query = $"SELECT COUNT(*) FROM History WHERE PackedDate >= @StartOfHour AND PackedDate < @EndOfHour";
 
             try
             {
@@ -125,7 +125,7 @@ namespace PackingSoftware
             DateTime today = DateTime.Today;
 
             // SQL query to count items packed today
-            string query = $"SELECT COUNT(*) FROM ManifestTable WHERE CAST(PackedDate AS DATE) = @Today  AND NOT OrderSKU like 'L%'";
+            string query = $"SELECT Count(*) FROM History where  CAST(PackedDate AS DATE) = CAST(GETDATE() AS DATE)";
 
             try
             {
@@ -177,6 +177,105 @@ namespace PackingSoftware
 
             return dt;
         }
+        
+        public DataTable ReturnOrdersLeftToPack()
+        {
+            DataTable dt = new DataTable();
+
+            // Get the current date and 7 days ago
+            DateTime today = DateTime.Today;
+            DateTime sevenDaysAgo = today.AddDays(-7);
+
+            // SQL query to get orders from the past 7 days that haven't been packed yet (PackedDate is NULL)
+            // Exclude orders where Channel contains "Laptop" or "Prebuilt"
+            // For PCs: SKU starts with C followed by number, but not CX
+            // For Laptops: SKU starts with L followed by number, but not LX
+            string query = @"SELECT 
+                                h.Orderid,
+                                h.SKU,
+                                h.QTY,
+                                h.Channel,
+                                h.Date,
+                                h.AssignedNumber
+                            FROM History h 
+                            WHERE h.PackedDate IS NULL 
+                            AND CAST(h.Date AS DATE) >= @SevenDaysAgo
+                            AND h.Channel NOT LIKE '%Laptop%'
+                            AND h.Channel NOT LIKE '%Prebuilt%'
+                            AND h.Channel NOT LIKE '%DIRECT%'
+                            AND (
+                                (h.SKU LIKE 'C[0-9]%' AND h.SKU NOT LIKE 'CX%') OR
+                                (h.SKU LIKE 'L[0-9]%' AND h.SKU NOT LIKE 'LX%')
+                            )
+                            ORDER BY h.Date ASC";
+
+            try
+            {
+                using (SqlConnection _connection = new SqlConnection(sql))
+                using (SqlCommand command = new SqlCommand(query, _connection))
+                using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                {
+                    // Add the parameter to the command
+                    command.Parameters.AddWithValue("@SevenDaysAgo", sevenDaysAgo);
+
+                    _connection.Open();
+                    adapter.Fill(dt);
+                    _connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return dt;
+        }
+        
+        public string ReturnOrdersLeftToPackCount()
+        {
+            string itemCount = "";
+
+            // Get the current date and 7 days ago
+            DateTime today = DateTime.Today;
+            DateTime sevenDaysAgo = today.AddDays(-7);
+
+            // SQL query to count orders from the past 7 days that haven't been packed yet
+            // Exclude orders where Channel contains "Laptop" or "Prebuilt"
+            // For PCs: SKU starts with C followed by number, but not CX
+            // For Laptops: SKU starts with L followed by number, but not LX
+            string query = @"SELECT COUNT(*) FROM History 
+                            WHERE PackedDate IS NULL 
+                            AND CAST(Date AS DATE) >= @SevenDaysAgo 
+                            AND Channel NOT LIKE '%Laptop%' 
+                            AND Channel NOT LIKE '%Prebuilt%'
+                            AND Channel NOT LIKE '%DIRECT%'
+                            AND (
+                                (SKU LIKE 'C[0-9]%' AND SKU NOT LIKE 'CX%') OR
+                                (SKU LIKE 'L[0-9]%' AND SKU NOT LIKE 'LX%')
+                            )";
+
+            try
+            {
+                using (SqlConnection _connection = new SqlConnection(sql))
+                using (SqlCommand command = new SqlCommand(query, _connection))
+                {
+                    // Add the parameter to the command
+                    command.Parameters.AddWithValue("@SevenDaysAgo", sevenDaysAgo);
+
+                    _connection.Open();
+                    itemCount = command.ExecuteScalar().ToString();
+                    _connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                itemCount = "0";
+            }
+
+            return itemCount;
+        }
+        
         /// <summary>
         /// Select the table that fits the condition
         /// </summary>
@@ -255,30 +354,29 @@ namespace PackingSoftware
             DataRow item;
             try
             {
-                item = SelectSpecific("History", "OrderID", orderNumber).Rows[^1];
+                item = SelectSpecific("History", "Orderid", orderNumber).Rows[^1];
             }
             catch (Exception)
             {
                 orderNumber = orderNumber.Replace("P", "");
-                item = SelectSpecific("History", "OrderID", orderNumber).Rows[^1];
+                item = SelectSpecific("History", "Orderid", orderNumber).Rows[^1];
             }
             DataRow sku = SelectSpecific("SKUS", "SKU", item[2].ToString()??"").Rows[^1];
             Item returnItem;
             if (sku != null)
             {
-                if (item.ItemArray[4].ToString().Contains("Prebuilt"))
+                // Check SKU for product type instead of non-existent ProductType column
+                string channel = item[4].ToString(); // SKU column
+                if (channel.Contains("Prebuilt"))
                 {
                      return new Item(orderNumber, sku[0].ToString(), sku[3].ToString(), sku[5].ToString(), sku[4].ToString(), sku[7].ToString(), sku[9].ToString(), sku[6].ToString(), ItemType.PC_Prebuild);
-                }else if(item.ItemArray[4].ToString().Contains("Laptop"))
+                }else if(channel.Contains("Laptop"))
                 {
                      return new Item(orderNumber, sku[0].ToString(), sku[3].ToString(), sku[5].ToString(), sku[4].ToString(), sku[7].ToString(), sku[9].ToString(), sku[6].ToString(), ItemType.Laptop_Prebuild);
-                }else if ((!item.ItemArray[4].ToString().Contains("Laptop") || !item.ItemArray[4].ToString().Contains("Prebuilt")) && sku[1].ToString().Contains("LAPTOP"))
-                {
-                     return new Item(orderNumber, sku[0].ToString(), sku[3].ToString(), sku[5].ToString(), sku[4].ToString(), sku[7].ToString(), sku[9].ToString(), sku[6].ToString(), ItemType.Laptop_Order);
                 }
-                else if ((!item.ItemArray[4].ToString().Contains("Laptop") || !item.ItemArray[4].ToString().Contains("Prebuilt")) && sku[1].ToString().Contains("DESKTOP"))
+                else
                 {
-                     return  new Item(orderNumber, sku[0].ToString(), sku[3].ToString(), sku[5].ToString(), sku[4].ToString(), sku[7].ToString(), sku[9].ToString(), sku[6].ToString(), ItemType.PC_Order);
+                     return  new Item(orderNumber, sku[0].ToString(), sku[3].ToString(), sku[5].ToString(), sku[4].ToString(), sku[7].ToString(), sku[9].ToString(), sku[6].ToString(), ItemType.Order);
                 }
             }
             return null;

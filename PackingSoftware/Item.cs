@@ -13,7 +13,7 @@ namespace PackingSoftware
 {
     public enum ItemType
     {
-       PC_Order,
+       Order,
        PC_Prebuild,
        Laptop_Order,
        Laptop_Prebuild

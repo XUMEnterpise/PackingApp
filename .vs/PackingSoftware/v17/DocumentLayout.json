@@ -3,24 +3,24 @@
   "WorkspaceRootPath": "E:\\repos\\PackingApp\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{2BC50AC1-F3CC-47BF-8F45-71C88769E34B}|PackingSoftware\\PackingSoftware.csproj|e:\\repos\\packingapp\\packingsoftware\\dbmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BC50AC1-F3CC-47BF-8F45-71C88769E34B}|PackingSoftware\\PackingSoftware.csproj|solutionrelative:packingsoftware\\dbmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{2BC50AC1-F3CC-47BF-8F45-71C88769E34B}|PackingSoftware\\PackingSoftware.csproj|e:\\repos\\packingapp\\packingsoftware\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2BC50AC1-F3CC-47BF-8F45-71C88769E34B}|PackingSoftware\\PackingSoftware.csproj|solutionrelative:packingsoftware\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2BC50AC1-F3CC-47BF-8F45-71C88769E34B}|PackingSoftware\\PackingSoftware.csproj|e:\\repos\\packingapp\\packingsoftware\\packedentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2BC50AC1-F3CC-47BF-8F45-71C88769E34B}|PackingSoftware\\PackingSoftware.csproj|solutionrelative:packingsoftware\\packedentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2BC50AC1-F3CC-47BF-8F45-71C88769E34B}|PackingSoftware\\PackingSoftware.csproj|E:\\repos\\PackingApp\\packingsoftware\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{2BC50AC1-F3CC-47BF-8F45-71C88769E34B}|PackingSoftware\\PackingSoftware.csproj|solutionrelative:packingsoftware\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{2BC50AC1-F3CC-47BF-8F45-71C88769E34B}|PackingSoftware\\PackingSoftware.csproj|e:\\repos\\packingapp\\packingsoftware\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2BC50AC1-F3CC-47BF-8F45-71C88769E34B}|PackingSoftware\\PackingSoftware.csproj|solutionrelative:packingsoftware\\item.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2BC50AC1-F3CC-47BF-8F45-71C88769E34B}|PackingSoftware\\PackingSoftware.csproj|e:\\repos\\packingapp\\packingsoftware\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{2BC50AC1-F3CC-47BF-8F45-71C88769E34B}|PackingSoftware\\PackingSoftware.csproj|solutionrelative:packingsoftware\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{2BC50AC1-F3CC-47BF-8F45-71C88769E34B}|PackingSoftware\\PackingSoftware.csproj|e:\\repos\\packingapp\\packingsoftware\\dbmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2BC50AC1-F3CC-47BF-8F45-71C88769E34B}|PackingSoftware\\PackingSoftware.csproj|solutionrelative:packingsoftware\\dbmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2BC50AC1-F3CC-47BF-8F45-71C88769E34B}|PackingSoftware\\PackingSoftware.csproj|e:\\repos\\packingapp\\packingsoftware\\packedentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2BC50AC1-F3CC-47BF-8F45-71C88769E34B}|PackingSoftware\\PackingSoftware.csproj|solutionrelative:packingsoftware\\packedentry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,12 +33,34 @@
           "SelectedChildIndex": 4,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Item.cs",
+              "DocumentMoniker": "E:\\repos\\PackingApp\\PackingSoftware\\Item.cs",
+              "RelativeDocumentMoniker": "PackingSoftware\\Item.cs",
+              "ToolTip": "E:\\repos\\PackingApp\\PackingSoftware\\Item.cs",
+              "RelativeToolTip": "PackingSoftware\\Item.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-06T10:12:11.926Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
+              "Title": "Form1.cs",
+              "DocumentMoniker": "E:\\repos\\PackingApp\\PackingSoftware\\Form1.cs",
+              "RelativeDocumentMoniker": "PackingSoftware\\Form1.cs",
+              "ToolTip": "E:\\repos\\PackingApp\\PackingSoftware\\Form1.cs",
+              "RelativeToolTip": "PackingSoftware\\Form1.cs",
+              "ViewState": "AQIAAGIAAAAAAAAAAAAcwIEAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-29T17:23:00.956Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Form1.cs [Design]",
               "DocumentMoniker": "E:\\repos\\PackingApp\\PackingSoftware\\Form1.cs",
               "RelativeDocumentMoniker": "PackingSoftware\\Form1.cs",
@@ -50,20 +72,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Item.cs",
-              "DocumentMoniker": "E:\\repos\\PackingApp\\PackingSoftware\\Item.cs",
-              "RelativeDocumentMoniker": "PackingSoftware\\Item.cs",
-              "ToolTip": "E:\\repos\\PackingApp\\PackingSoftware\\Item.cs",
-              "RelativeToolTip": "PackingSoftware\\Item.cs",
-              "ViewState": "AQIAAB8AAAAAAAAAAAAtwDwAAAAMAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-12-06T10:12:11.926Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "PackedEntry.cs",
               "DocumentMoniker": "E:\\repos\\PackingApp\\PackingSoftware\\PackedEntry.cs",
               "RelativeDocumentMoniker": "PackingSoftware\\PackedEntry.cs",
@@ -77,25 +86,12 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "Form1.cs",
-              "DocumentMoniker": "E:\\repos\\PackingApp\\PackingSoftware\\Form1.cs",
-              "RelativeDocumentMoniker": "PackingSoftware\\Form1.cs",
-              "ToolTip": "E:\\repos\\PackingApp\\PackingSoftware\\Form1.cs",
-              "RelativeToolTip": "PackingSoftware\\Form1.cs",
-              "ViewState": "AQIAAIkAAAAAAAAAAAAcwI0AAAA3AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-29T17:23:00.956Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "DBManager.cs",
               "DocumentMoniker": "E:\\repos\\PackingApp\\PackingSoftware\\DBManager.cs",
               "RelativeDocumentMoniker": "PackingSoftware\\DBManager.cs",
               "ToolTip": "E:\\repos\\PackingApp\\PackingSoftware\\DBManager.cs",
               "RelativeToolTip": "PackingSoftware\\DBManager.cs",
-              "ViewState": "AQIAAAQBAAAAAAAAAAAcwB4BAAAIAAAA",
+              "ViewState": "AQIAAFEBAAAAAAAAAAAAAHABAAAQAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-29T17:21:04.755Z",
               "EditorCaption": ""

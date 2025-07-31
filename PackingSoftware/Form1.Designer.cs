@@ -28,318 +28,457 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            headerPanel = new Panel();
+            titleLabel = new Label();
+            clockLabel = new Label();
+            mainPanel = new Panel();
+            inputPanel = new Panel();
+            step1Label = new Label();
             orderNumberTextBox = new TextBox();
+            step2Label = new Label();
             secondTextBox = new TextBox();
-            label2 = new Label();
+            step3Label = new Label();
             staffTextBox = new TextBox();
-            label3 = new Label();
-            panel1 = new Panel();
-            label12 = new Label();
-            label8 = new Label();
-            label9 = new Label();
-            label10 = new Label();
-            label11 = new Label();
-            label7 = new Label();
-            label6 = new Label();
-            label5 = new Label();
-            label4 = new Label();
-            Instructions = new Label();
-            label13 = new Label();
-            hourQTY = new Label();
-            PackedTodayCountLabel = new Label();
-            label16 = new Label();
-            ClockLabel = new Label();
-            label19 = new Label();
+            statsPanel = new Panel();
+            statsTitleLabel = new Label();
+            hourQtyLabel = new Label();
+            hourQtyValue = new Label();
+            todayLabel = new Label();
+            todayValue = new Label();
+            ordersLeftLabel = new Label();
+            ordersLeftValue = new Label();
+            instructionsPanel = new Panel();
+            instructionsTitleLabel = new Label();
+            prebuildInstructionsLabel = new Label();
+            orderInstructionsLabel = new Label();
+            gridPanel = new Panel();
+            gridTitleLabel = new Label();
             dataGridView1 = new DataGridView();
-            panel1.SuspendLayout();
+            headerPanel.SuspendLayout();
+            mainPanel.SuspendLayout();
+            inputPanel.SuspendLayout();
+            statsPanel.SuspendLayout();
+            instructionsPanel.SuspendLayout();
+            gridPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
-            // label1
+            // headerPanel
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(18, 22);
-            label1.Name = "label1";
-            label1.Size = new Size(179, 15);
-            label1.TabIndex = 0;
-            label1.Text = "Step 1 :Prebuild or order number";
+            headerPanel.BackColor = Color.FromArgb(45, 45, 45);
+            headerPanel.Controls.Add(titleLabel);
+            headerPanel.Controls.Add(clockLabel);
+            headerPanel.Dock = DockStyle.Top;
+            headerPanel.Location = new Point(0, 0);
+            headerPanel.Name = "headerPanel";
+            headerPanel.Padding = new Padding(20);
+            headerPanel.Size = new Size(1184, 80);
+            headerPanel.TabIndex = 1;
+            // 
+            // titleLabel
+            // 
+            titleLabel.AutoSize = true;
+            titleLabel.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
+            titleLabel.ForeColor = Color.FromArgb(0, 150, 255);
+            titleLabel.Location = new Point(20, 20);
+            titleLabel.Name = "titleLabel";
+            titleLabel.Size = new Size(340, 45);
+            titleLabel.TabIndex = 0;
+            titleLabel.Text = "PACKING SOFTWARE";
+            // 
+            // clockLabel
+            // 
+            clockLabel.AutoSize = true;
+            clockLabel.Font = new Font("Segoe UI", 12F);
+            clockLabel.ForeColor = Color.White;
+            clockLabel.Location = new Point(200, 30);
+            clockLabel.Name = "clockLabel";
+            clockLabel.Size = new Size(163, 21);
+            clockLabel.TabIndex = 1;
+            clockLabel.Text = "31 July 2025 14:36:24";
+            // 
+            // mainPanel
+            // 
+            mainPanel.BackColor = Color.FromArgb(32, 32, 32);
+            mainPanel.Controls.Add(inputPanel);
+            mainPanel.Controls.Add(statsPanel);
+            mainPanel.Controls.Add(instructionsPanel);
+            mainPanel.Controls.Add(gridPanel);
+            mainPanel.Dock = DockStyle.Fill;
+            mainPanel.Location = new Point(0, 80);
+            mainPanel.Name = "mainPanel";
+            mainPanel.Padding = new Padding(20);
+            mainPanel.Size = new Size(1184, 654);
+            mainPanel.TabIndex = 0;
+            // 
+            // inputPanel
+            // 
+            inputPanel.BackColor = Color.FromArgb(45, 45, 45);
+            inputPanel.Controls.Add(step1Label);
+            inputPanel.Controls.Add(orderNumberTextBox);
+            inputPanel.Controls.Add(step2Label);
+            inputPanel.Controls.Add(secondTextBox);
+            inputPanel.Controls.Add(step3Label);
+            inputPanel.Controls.Add(staffTextBox);
+            inputPanel.Location = new Point(20, 20);
+            inputPanel.Name = "inputPanel";
+            inputPanel.Padding = new Padding(20);
+            inputPanel.Size = new Size(400, 200);
+            inputPanel.TabIndex = 0;
+            // 
+            // step1Label
+            // 
+            step1Label.AutoSize = true;
+            step1Label.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            step1Label.ForeColor = Color.FromArgb(0, 150, 255);
+            step1Label.Location = new Point(20, 6);
+            step1Label.Name = "step1Label";
+            step1Label.Size = new Size(305, 19);
+            step1Label.TabIndex = 0;
+            step1Label.Text = "STEP 1: SCAN PREBUILD OR ORDER NUMBER";
             // 
             // orderNumberTextBox
             // 
-            orderNumberTextBox.Location = new Point(18, 40);
+            orderNumberTextBox.BackColor = Color.FromArgb(60, 60, 60);
+            orderNumberTextBox.BorderStyle = BorderStyle.FixedSingle;
+            orderNumberTextBox.Font = new Font("Segoe UI", 12F);
+            orderNumberTextBox.ForeColor = Color.White;
+            orderNumberTextBox.Location = new Point(20, 28);
             orderNumberTextBox.Name = "orderNumberTextBox";
-            orderNumberTextBox.Size = new Size(179, 23);
+            orderNumberTextBox.Size = new Size(360, 29);
             orderNumberTextBox.TabIndex = 1;
             orderNumberTextBox.KeyDown += orderNumberTextBox_KeyDown;
             // 
+            // step2Label
+            // 
+            step2Label.AutoSize = true;
+            step2Label.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            step2Label.ForeColor = Color.FromArgb(0, 150, 255);
+            step2Label.Location = new Point(20, 63);
+            step2Label.Name = "step2Label";
+            step2Label.Size = new Size(306, 19);
+            step2Label.TabIndex = 2;
+            step2Label.Text = "STEP 2: SCAN ORDER NUMBER (IF PREBUILD)";
+            step2Label.Visible = false;
+            // 
             // secondTextBox
             // 
-            secondTextBox.Location = new Point(210, 40);
+            secondTextBox.BackColor = Color.FromArgb(60, 60, 60);
+            secondTextBox.BorderStyle = BorderStyle.FixedSingle;
+            secondTextBox.Font = new Font("Segoe UI", 12F);
+            secondTextBox.ForeColor = Color.White;
+            secondTextBox.Location = new Point(20, 85);
             secondTextBox.Name = "secondTextBox";
-            secondTextBox.Size = new Size(192, 23);
+            secondTextBox.Size = new Size(360, 29);
             secondTextBox.TabIndex = 3;
             secondTextBox.Visible = false;
             secondTextBox.KeyDown += OnEnterSecondTextBox;
             // 
-            // label2
+            // step3Label
             // 
-            label2.AutoSize = true;
-            label2.Location = new Point(210, 22);
-            label2.Name = "label2";
-            label2.Size = new Size(192, 15);
-            label2.TabIndex = 2;
-            label2.Text = "Step 2: Scan again or order number";
-            label2.Visible = false;
+            step3Label.AutoSize = true;
+            step3Label.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            step3Label.ForeColor = Color.FromArgb(0, 150, 255);
+            step3Label.Location = new Point(20, 123);
+            step3Label.Name = "step3Label";
+            step3Label.Size = new Size(187, 19);
+            step3Label.TabIndex = 4;
+            step3Label.Text = "STEP 3: ENTER STAFF CODE";
             // 
             // staffTextBox
             // 
-            staffTextBox.Location = new Point(18, 105);
+            staffTextBox.BackColor = Color.FromArgb(60, 60, 60);
+            staffTextBox.BorderStyle = BorderStyle.FixedSingle;
+            staffTextBox.Font = new Font("Segoe UI", 12F);
+            staffTextBox.ForeColor = Color.White;
+            staffTextBox.Location = new Point(20, 148);
             staffTextBox.Name = "staffTextBox";
-            staffTextBox.Size = new Size(100, 23);
+            staffTextBox.Size = new Size(200, 29);
             staffTextBox.TabIndex = 5;
             staffTextBox.KeyDown += OnEnterStaff;
             // 
-            // label3
+            // statsPanel
             // 
-            label3.AutoSize = true;
-            label3.Location = new Point(18, 87);
-            label3.Name = "label3";
-            label3.Size = new Size(98, 15);
-            label3.TabIndex = 4;
-            label3.Text = "Step 3: Staff code";
+            statsPanel.BackColor = Color.FromArgb(45, 45, 45);
+            statsPanel.Controls.Add(statsTitleLabel);
+            statsPanel.Controls.Add(hourQtyLabel);
+            statsPanel.Controls.Add(hourQtyValue);
+            statsPanel.Controls.Add(todayLabel);
+            statsPanel.Controls.Add(todayValue);
+            statsPanel.Controls.Add(ordersLeftLabel);
+            statsPanel.Controls.Add(ordersLeftValue);
+            statsPanel.Location = new Point(440, 20);
+            statsPanel.Name = "statsPanel";
+            statsPanel.Padding = new Padding(20);
+            statsPanel.Size = new Size(300, 200);
+            statsPanel.TabIndex = 1;
             // 
-            // panel1
+            // statsTitleLabel
             // 
-            panel1.BackColor = SystemColors.ControlDark;
-            panel1.Controls.Add(label12);
-            panel1.Controls.Add(label8);
-            panel1.Controls.Add(label9);
-            panel1.Controls.Add(label10);
-            panel1.Controls.Add(label11);
-            panel1.Controls.Add(label7);
-            panel1.Controls.Add(label6);
-            panel1.Controls.Add(label5);
-            panel1.Controls.Add(label4);
-            panel1.Controls.Add(Instructions);
-            panel1.Location = new Point(859, 12);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(333, 338);
-            panel1.TabIndex = 6;
+            statsTitleLabel.AutoSize = true;
+            statsTitleLabel.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            statsTitleLabel.ForeColor = Color.FromArgb(0, 150, 255);
+            statsTitleLabel.Location = new Point(20, 20);
+            statsTitleLabel.Name = "statsTitleLabel";
+            statsTitleLabel.Size = new Size(113, 25);
+            statsTitleLabel.TabIndex = 0;
+            statsTitleLabel.Text = "STATISTICS";
             // 
-            // label12
+            // hourQtyLabel
             // 
-            label12.AutoSize = true;
-            label12.Location = new Point(24, 233);
-            label12.Name = "label12";
-            label12.Size = new Size(203, 15);
-            label12.TabIndex = 16;
-            label12.Text = " otherwise it will just skip to next step";
+            hourQtyLabel.AutoSize = true;
+            hourQtyLabel.Font = new Font("Segoe UI", 12F);
+            hourQtyLabel.ForeColor = Color.White;
+            hourQtyLabel.Location = new Point(20, 60);
+            hourQtyLabel.Name = "hourQtyLabel";
+            hourQtyLabel.Size = new Size(132, 21);
+            hourQtyLabel.TabIndex = 1;
+            hourQtyLabel.Text = "Packed This Hour:";
             // 
-            // label8
+            // hourQtyValue
             // 
-            label8.AutoSize = true;
-            label8.Location = new Point(14, 262);
-            label8.Name = "label8";
-            label8.Size = new Size(115, 15);
-            label8.TabIndex = 15;
-            label8.Text = "3. Scan staff number";
+            hourQtyValue.AutoSize = true;
+            hourQtyValue.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            hourQtyValue.ForeColor = Color.FromArgb(0, 255, 150);
+            hourQtyValue.Location = new Point(20, 85);
+            hourQtyValue.Name = "hourQtyValue";
+            hourQtyValue.Size = new Size(33, 37);
+            hourQtyValue.TabIndex = 2;
+            hourQtyValue.Text = "0";
             // 
-            // label9
+            // todayLabel
             // 
-            label9.AutoSize = true;
-            label9.Location = new Point(14, 209);
-            label9.Name = "label9";
-            label9.Size = new Size(228, 15);
-            label9.TabIndex = 14;
-            label9.Text = "2. If had prebuild scan order number next ";
+            todayLabel.AutoSize = true;
+            todayLabel.Font = new Font("Segoe UI", 12F);
+            todayLabel.ForeColor = Color.White;
+            todayLabel.Location = new Point(20, 120);
+            todayLabel.Name = "todayLabel";
+            todayLabel.Size = new Size(105, 21);
+            todayLabel.TabIndex = 3;
+            todayLabel.Text = "Packed Today:";
             // 
-            // label10
+            // todayValue
             // 
-            label10.AutoSize = true;
-            label10.Location = new Point(14, 179);
-            label10.Name = "label10";
-            label10.Size = new Size(312, 15);
-            label10.TabIndex = 13;
-            label10.Text = "1. Scan prebuild number first, if don't have one scan order";
+            todayValue.AutoSize = true;
+            todayValue.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            todayValue.ForeColor = Color.FromArgb(0, 255, 150);
+            todayValue.Location = new Point(20, 145);
+            todayValue.Name = "todayValue";
+            todayValue.Size = new Size(33, 37);
+            todayValue.TabIndex = 4;
+            todayValue.Text = "0";
             // 
-            // label11
+            // ordersLeftLabel
             // 
-            label11.AutoSize = true;
-            label11.Location = new Point(14, 144);
-            label11.Name = "label11";
-            label11.Size = new Size(123, 15);
-            label11.TabIndex = 12;
-            label11.Text = "Instructions for orders";
+            ordersLeftLabel.AutoSize = true;
+            ordersLeftLabel.Font = new Font("Segoe UI", 12F);
+            ordersLeftLabel.ForeColor = Color.White;
+            ordersLeftLabel.Location = new Point(168, 60);
+            ordersLeftLabel.Name = "ordersLeftLabel";
+            ordersLeftLabel.Size = new Size(91, 21);
+            ordersLeftLabel.TabIndex = 5;
+            ordersLeftLabel.Text = "Orders Left:";
             // 
-            // label7
+            // ordersLeftValue
             // 
-            label7.AutoSize = true;
-            label7.Location = new Point(14, 106);
-            label7.Name = "label7";
-            label7.Size = new Size(115, 15);
-            label7.TabIndex = 11;
-            label7.Text = "3. Scan staff number";
+            ordersLeftValue.AutoSize = true;
+            ordersLeftValue.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
+            ordersLeftValue.ForeColor = Color.FromArgb(255, 193, 7);
+            ordersLeftValue.Location = new Point(168, 85);
+            ordersLeftValue.Name = "ordersLeftValue";
+            ordersLeftValue.Size = new Size(33, 37);
+            ordersLeftValue.TabIndex = 6;
+            ordersLeftValue.Text = "0";
             // 
-            // label6
+            // instructionsPanel
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(14, 74);
-            label6.Name = "label6";
-            label6.Size = new Size(141, 15);
-            label6.TabIndex = 10;
-            label6.Text = "2. Scan the number again";
+            instructionsPanel.BackColor = Color.FromArgb(45, 45, 45);
+            instructionsPanel.Controls.Add(instructionsTitleLabel);
+            instructionsPanel.Controls.Add(prebuildInstructionsLabel);
+            instructionsPanel.Controls.Add(orderInstructionsLabel);
+            instructionsPanel.Location = new Point(760, 20);
+            instructionsPanel.Name = "instructionsPanel";
+            instructionsPanel.Padding = new Padding(20);
+            instructionsPanel.Size = new Size(400, 200);
+            instructionsPanel.TabIndex = 2;
             // 
-            // label5
+            // instructionsTitleLabel
             // 
-            label5.AutoSize = true;
-            label5.Location = new Point(14, 59);
-            label5.Name = "label5";
-            label5.Size = new Size(0, 15);
-            label5.TabIndex = 9;
+            instructionsTitleLabel.AutoSize = true;
+            instructionsTitleLabel.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            instructionsTitleLabel.ForeColor = Color.FromArgb(0, 150, 255);
+            instructionsTitleLabel.Location = new Point(20, 0);
+            instructionsTitleLabel.Name = "instructionsTitleLabel";
+            instructionsTitleLabel.Size = new Size(150, 25);
+            instructionsTitleLabel.TabIndex = 0;
+            instructionsTitleLabel.Text = "INSTRUCTIONS";
             // 
-            // label4
+            // prebuildInstructionsLabel
             // 
-            label4.AutoSize = true;
-            label4.Location = new Point(14, 44);
-            label4.Name = "label4";
-            label4.Size = new Size(136, 15);
-            label4.TabIndex = 8;
-            label4.Text = "1. Scan prebuild number";
+            prebuildInstructionsLabel.AutoSize = true;
+            prebuildInstructionsLabel.Font = new Font("Segoe UI", 10F);
+            prebuildInstructionsLabel.ForeColor = Color.White;
+            prebuildInstructionsLabel.Location = new Point(20, 28);
+            prebuildInstructionsLabel.Name = "prebuildInstructionsLabel";
+            prebuildInstructionsLabel.Size = new Size(158, 76);
+            prebuildInstructionsLabel.TabIndex = 1;
+            prebuildInstructionsLabel.Text = "PREBUILD PROCESS:\n1. Scan prebuild number\n2. Scan order number\n3. Enter staff code";
             // 
-            // Instructions
+            // orderInstructionsLabel
             // 
-            Instructions.AutoSize = true;
-            Instructions.Location = new Point(14, 9);
-            Instructions.Name = "Instructions";
-            Instructions.Size = new Size(134, 15);
-            Instructions.TabIndex = 7;
-            Instructions.Text = "Instructions for prebuild";
+            orderInstructionsLabel.AutoSize = true;
+            orderInstructionsLabel.Font = new Font("Segoe UI", 10F);
+            orderInstructionsLabel.ForeColor = Color.White;
+            orderInstructionsLabel.Location = new Point(20, 110);
+            orderInstructionsLabel.Name = "orderInstructionsLabel";
+            orderInstructionsLabel.Size = new Size(141, 57);
+            orderInstructionsLabel.TabIndex = 2;
+            orderInstructionsLabel.Text = "ORDER PROCESS:\n1. Scan order number\n2. Enter staff code";
             // 
-            // label13
+            // gridPanel
             // 
-            label13.AutoSize = true;
-            label13.Font = new Font("Segoe UI", 15F);
-            label13.Location = new Point(859, 392);
-            label13.Name = "label13";
-            label13.Size = new Size(159, 28);
-            label13.TabIndex = 17;
-            label13.Text = "Packed this hour:";
+            gridPanel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            gridPanel.BackColor = Color.FromArgb(45, 45, 45);
+            gridPanel.Controls.Add(gridTitleLabel);
+            gridPanel.Controls.Add(dataGridView1);
+            gridPanel.Location = new Point(12, 241);
+            gridPanel.Name = "gridPanel";
+            gridPanel.Padding = new Padding(20);
+            gridPanel.Size = new Size(1148, 400);
+            gridPanel.TabIndex = 3;
             // 
-            // hourQTY
+            // gridTitleLabel
             // 
-            hourQTY.AutoSize = true;
-            hourQTY.Font = new Font("Segoe UI", 15F);
-            hourQTY.Location = new Point(859, 430);
-            hourQTY.Name = "hourQTY";
-            hourQTY.Size = new Size(48, 28);
-            hourQTY.TabIndex = 18;
-            hourQTY.Text = "N/A";
-            // 
-            // PackedTodayCountLabel
-            // 
-            PackedTodayCountLabel.AutoSize = true;
-            PackedTodayCountLabel.Font = new Font("Segoe UI", 15F);
-            PackedTodayCountLabel.Location = new Point(859, 517);
-            PackedTodayCountLabel.Name = "PackedTodayCountLabel";
-            PackedTodayCountLabel.Size = new Size(48, 28);
-            PackedTodayCountLabel.TabIndex = 20;
-            PackedTodayCountLabel.Text = "N/A";
-            // 
-            // label16
-            // 
-            label16.AutoSize = true;
-            label16.Font = new Font("Segoe UI", 15F);
-            label16.Location = new Point(859, 479);
-            label16.Name = "label16";
-            label16.Size = new Size(138, 28);
-            label16.TabIndex = 19;
-            label16.Text = "Packed today: ";
-            // 
-            // ClockLabel
-            // 
-            ClockLabel.AutoSize = true;
-            ClockLabel.Font = new Font("Segoe UI", 15F);
-            ClockLabel.Location = new Point(859, 364);
-            ClockLabel.Name = "ClockLabel";
-            ClockLabel.Size = new Size(80, 28);
-            ClockLabel.TabIndex = 22;
-            ClockLabel.Text = "HH:MM";
-            // 
-            // label19
-            // 
-            label19.AutoSize = true;
-            label19.Font = new Font("Segoe UI", 15F);
-            label19.Location = new Point(18, 165);
-            label19.Name = "label19";
-            label19.Size = new Size(129, 28);
-            label19.TabIndex = 24;
-            label19.Text = "Packed today";
+            gridTitleLabel.AutoSize = true;
+            gridTitleLabel.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            gridTitleLabel.ForeColor = Color.FromArgb(0, 150, 255);
+            gridTitleLabel.Location = new Point(20, 20);
+            gridTitleLabel.Name = "gridTitleLabel";
+            gridTitleLabel.Size = new Size(213, 25);
+            gridTitleLabel.TabIndex = 0;
+            gridTitleLabel.Text = "ORDERS LEFT TO PACK";
             // 
             // dataGridView1
             // 
-            dataGridView1.ColumnHeadersHeight = 25;
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView1.Location = new Point(29, 196);
+            dataGridView1.AllowUserToAddRows = false;
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.BackgroundColor = Color.FromArgb(60, 60, 60);
+            dataGridView1.BorderStyle = BorderStyle.None;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(45, 45, 45);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(60, 60, 60);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridView1.GridColor = Color.FromArgb(80, 80, 80);
+            dataGridView1.Location = new Point(20, 50);
+            dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
-            dataGridView1.Size = new Size(771, 311);
-            dataGridView1.TabIndex = 25;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(45, 45, 45);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView1.Size = new Size(1100, 330);
+            dataGridView1.TabIndex = 1;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1207, 575);
-            Controls.Add(dataGridView1);
-            Controls.Add(label19);
-            Controls.Add(ClockLabel);
-            Controls.Add(PackedTodayCountLabel);
-            Controls.Add(label16);
-            Controls.Add(hourQTY);
-            Controls.Add(label13);
-            Controls.Add(panel1);
-            Controls.Add(staffTextBox);
-            Controls.Add(label3);
-            Controls.Add(secondTextBox);
-            Controls.Add(label2);
-            Controls.Add(orderNumberTextBox);
-            Controls.Add(label1);
-            FormBorderStyle = FormBorderStyle.FixedToolWindow;
+            BackColor = Color.FromArgb(32, 32, 32);
+            ClientSize = new Size(1184, 734);
+            Controls.Add(mainPanel);
+            Controls.Add(headerPanel);
+            Font = new Font("Segoe UI", 9F);
+            ForeColor = Color.White;
+            MinimumSize = new Size(1000, 600);
             Name = "Form1";
-            Text = "Packing Software";
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Packing Software - Modern Edition";
+            headerPanel.ResumeLayout(false);
+            headerPanel.PerformLayout();
+            mainPanel.ResumeLayout(false);
+            inputPanel.ResumeLayout(false);
+            inputPanel.PerformLayout();
+            statsPanel.ResumeLayout(false);
+            statsPanel.PerformLayout();
+            instructionsPanel.ResumeLayout(false);
+            instructionsPanel.PerformLayout();
+            gridPanel.ResumeLayout(false);
+            gridPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            
+            // Map new modern components to original variable names for compatibility
+            this.ClockLabel = clockLabel;
+            this.hourQTY = hourQtyValue;
+            this.PackedTodayCountLabel = todayValue;
+            this.label1 = step1Label;
+            this.label2 = step2Label;
+            this.label3 = step3Label;
+            this.label19 = gridTitleLabel;
+            this.orderNumberTextBox = orderNumberTextBox;
+            this.secondTextBox = secondTextBox;
+            this.staffTextBox = staffTextBox;
+            this.dataGridView1 = dataGridView1;
+            
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
+        // Modern UI components
+        private Panel headerPanel;
+        private Label titleLabel;
+        private Label clockLabel;
+        private Panel mainPanel;
+        private Panel inputPanel;
+        private Label step1Label;
+        private Label step2Label;
+        private Label step3Label;
+        private Panel statsPanel;
+        private Label statsTitleLabel;
+        private Label hourQtyLabel;
+        private Label hourQtyValue;
+        private Label todayLabel;
+        private Label todayValue;
+        private Label ordersLeftLabel;
+        private Label ordersLeftValue;
+        private Panel instructionsPanel;
+        private Label instructionsTitleLabel;
+        private Label prebuildInstructionsLabel;
+        private Label orderInstructionsLabel;
+        private Panel gridPanel;
+        private Label gridTitleLabel;
+        
+        // Original components (for compatibility)
         private Label label1;
         private TextBox orderNumberTextBox;
         private TextBox secondTextBox;
         private Label label2;
         private TextBox staffTextBox;
         private Label label3;
-        private Panel panel1;
-        private Label label4;
-        private Label Instructions;
-        private Label label12;
-        private Label label8;
-        private Label label9;
-        private Label label10;
-        private Label label11;
-        private Label label7;
-        private Label label6;
-        private Label label5;
-        private Label label13;
-        private Label hourQTY;
-        private Label PackedTodayCountLabel;
-        private Label label16;
-        private Label ClockLabel;
         private Label label19;
         private DataGridView dataGridView1;
+        private Label ClockLabel;
+        private Label hourQTY;
+        private Label PackedTodayCountLabel;
     }
 }
